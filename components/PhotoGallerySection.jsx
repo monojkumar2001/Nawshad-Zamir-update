@@ -239,16 +239,16 @@ export default function PhotoGallerySection() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
   return (
-    <section className="bg-white py-16 md:py-20 lg:py-24">
+    <section className="bg-white pb-16 md:pb-20 lg:pb-24">
       <Container>
         <div className="mb-10 md:mb-12">
           <div className="mb-3 flex items-center gap-3">
             <span className="h-px w-8 bg-[#D82221]" aria-hidden="true" />
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D82221]">
+            <p className="font-bold uppercase text-sm tracking-[0.25em] text-[#D82221]">
               Photo Gallery
             </p>
           </div>
-          <h2 className="max-w-3xl text-2xl font-bold leading-snug text-[#051A53] md:text-3xl lg:text-4xl">
+          <h2 className="max-w-3xl text-2xl capitalize font-bold leading-snug text-[#051A53] md:text-3xl lg:text-5xl">
             Explore Political &amp; Social Activities In Photos
           </h2>
         </div>

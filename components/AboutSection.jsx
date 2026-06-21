@@ -8,9 +8,16 @@ const signatureFont = Great_Vibes({
   weight: "400",
 });
 
-function QuoteIcon() {
+function QuoteIcon({ className = "" }) {
   return (
-    <svg width="28" height="22" viewBox="0 0 28 22" fill="none" aria-hidden="true">
+    <svg
+      width="28"
+      height="22"
+      viewBox="0 0 28 22"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
       <path
         d="M0 22V13.2C0 8.4 2.1 4.5 6.3 1.5L9.1 5.1C6.3 7.1 5 9.2 5 11.4H9.8V22H0ZM16.8 22V13.2C16.8 8.4 18.9 4.5 23.1 1.5L25.9 5.1C23.1 7.1 21.8 9.2 21.8 11.4H26.6V22H16.8Z"
         fill="white"
@@ -33,9 +40,9 @@ export default function AboutSection() {
   return (
     <section id="about" className="bg-white py-16 md:py-24">
       <Container>
-        <div className="grid items-start gap-4 lg:grid-cols-12 lg:gap-4 xl:gap-4">
+        <div className="grid items-start gap-4 lg:grid-cols-12 h-full lg:gap-4 xl:gap-4">
           <div className="col-span-5">
-            <div className="relative mx-auto w-full pb-10 lg:mx-0 lg:pb-14 flex justify-center items-center">
+            <div className="relative mx-auto w-full max-w-[520px] pb-10 lg:mx-0 lg:max-w-none lg:pb-14">
               <div className="relative overflow-hidden rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.1)]">
                 <Image
                   src="/assets/images/nowshad.png"
@@ -47,9 +54,9 @@ export default function AboutSection() {
                 />
               </div>
 
-              <div className="absolute   z-10 max-w-[309px] bg-[#E31837] p-5 shadow-[0_12px_32px_rgba(227,24,55,0.35)] bottom-3:p-6">
-                <QuoteIcon />
-                <p className="font-bengali mt-4 text-sm leading-relaxed text-white md:text-[15px] md:leading-relaxed">
+              <div className="absolute -bottom-6 left-4 z-10 w-[88%] max-w-[300px] bg-[#E31837] p-5 shadow-[0_12px_32px_rgba(227,24,55,0.35)] md:-bottom-8 md:left-8 lg:p-8">
+                <QuoteIcon className="h-6 w-6 lg:h-16 lg:w-16" />
+                <p className="mt-4 text-base leading-relaxed text-white md:text-lg md:leading-relaxed">
                   প্রথম বাংলাদেশ আমার শেষ বাংলাদেশ, জীবন বাংলাদেশ আমার মরন
                   বাংলাদেশ।
                   <br />
@@ -69,11 +76,11 @@ export default function AboutSection() {
                 The Spirit of Inclusive Advancement
               </p>
 
-              <h2 className="mb-6 text-3xl font-bold text-[#001540] md:text-[42px] md:leading-tight">
+              <h2 className="mb-6 font-roboto text-3xl font-bold text-[#001540] md:text-[42px] md:leading-tight">
                 Barrister Mir Helal
               </h2>
 
-              <div className="space-y-5 text-sm leading-[1.75] text-gray-700 md:text-[15px]">
+              <div className="space-y-5 text-sm leading-[1.75] text-gray-700 md:text-[16px]">
                 <p>
                   Mir Mohammed Helal Uddin is a barrister and Bangladesh
                   Nationalist Party politician. He is the incumbent{" "}

@@ -32,20 +32,22 @@ const socialLinks = [
 ];
 
 const FB_PAGE =
-  "https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fchattogram05&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true";
+  "https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBarristerNawshadZamir&tabs=timeline&width=420&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId";
 
-function FacebookCard() {
+  function FacebookCard() {
   return (
-    <div className="w-full max-w-[340px] overflow-hidden rounded-lg border border-[#c8dff7] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
+    <div className="w-[400px] overflow-hidden rounded-[18px] border  border-[#0B3A82] bg-white shadow-[0_20px_40px_rgba(0,0,0,0.25)] lg:w-[420px]">
       <iframe
         src={FB_PAGE}
-        title="Facebook Page — Barrister Nawshad Zamir"
-        width="340"
+        title="Facebook Page"
+        width="100%"
         height="500"
-        style={{ border: "none", overflow: "hidden" }}
+        style={{
+          border: "none",
+          overflow: "hidden",
+        }}
         scrolling="no"
         allow="encrypted-media"
-        className="w-full"
       />
     </div>
   );
@@ -53,48 +55,44 @@ function FacebookCard() {
 
 export default function SocialFollowSection() {
   return (
-    <section className="bg-white py-16 md:py-20 lg:py-24">
+    <section className="overflow-visible bg-white py-16 md:py-20 lg:py-24 mb-24">
       <Container>
-        <div className="relative overflow-visible py-8 md:py-10 lg:py-12">
-          {/* red banner */}
-          <div className="relative min-h-[300px] overflow-hidden rounded-2xl lg:min-h-[320px] lg:rounded-[18px]">
-            {/* gradient background */}
+        <div className="relative overflow-visible">
+          <div className="relative min-h-[340px] overflow-visible rounded-[18px]">
+            {/* Background Gradient */}
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 rounded-[18px]"
               style={{
                 background:
-                  "linear-gradient(to right, #D82221 0%, #D82221 38%, #e84545 58%, #f5a0a0 78%, #fff5f5 100%)",
+                  "linear-gradient(to top, #ff3b3b 0%, #ff5f5f 35%, #f6b6b6 70%, #fff 100%)",
               }}
-              aria-hidden="true"
             />
 
-            {/* city skyline — shap.png */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] opacity-[0.32]">
+            {/* Skyline Shape */}
+            <div className="absolute inset-x-0 -bottom-24 h-[70%] opacity-70">
               <Image
                 src="/assets/images/shap.png"
                 alt=""
                 fill
-                sizes="100vw"
-                className="object-cover object-bottom brightness-0 invert"
-                aria-hidden="true"
+                className="object-cover object-bottom"
               />
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-10 px-6 py-12 md:px-10 md:py-14 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:px-12 lg:py-16 xl:px-16">
-              {/* left — follow + icons */}
-              <div className="w-full text-center lg:max-w-md lg:pl-6 lg:text-left xl:pl-10">
-                <span
-                  className="mx-auto mb-3 block h-px w-10 bg-[#051A53] lg:mx-0"
-                  aria-hidden="true"
-                />
-                <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#051A53] md:text-xs">
-                  Follow
-                </p>
-                <h2 className="mt-1 text-[2.5rem] font-bold uppercase leading-none tracking-wide text-white md:text-5xl lg:text-[3.25rem]">
+            {/* Content */}
+            <div className="relative z-10 min-h-[340px]">
+              <div className="absolute bottom-12 right-[460px]">
+                <div className="flex items-center justify-end gap-3 mb-4">
+                  <span className="h-[2px] w-12 bg-[#051A53]" />
+                  <span className="text-[#051A53] text-lg font-bold uppercase tracking-[4px]">
+                    Follow
+                  </span>
+                </div>
+
+                <h2 className="text-right text-5xl font-extrabold uppercase text-white lg:text-6xl">
                   Mir Helal
                 </h2>
 
-                <div className="mt-8 flex flex-wrap justify-center gap-2.5 lg:justify-start">
+                <div className="mt-8 flex justify-end gap-3">
                   {socialLinks.map(({ label, href, Icon }) => (
                     <Link
                       key={label}
@@ -102,19 +100,24 @@ export default function SocialFollowSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-[#051A53] text-white transition-transform hover:scale-105 hover:bg-[#082060] md:h-11 md:w-11"
+                      className="flex h-12 w-12 items-center justify-center rounded bg-[#051A53] text-white transition duration-300 hover:scale-105"
                     >
-                      <Icon className="h-4 w-4" />
+                      <Icon size={16} />
                     </Link>
                   ))}
                 </div>
               </div>
-
-              {/* right — facebook widget overlapping banner */}
-              <div className="relative z-20 mx-auto shrink-0 lg:-my-14 lg:mr-2 xl:-my-16 xl:mr-4">
-                <FacebookCard />
-              </div>
             </div>
+
+            {/* Facebook Widget */}
+            <div className="absolute right-0 top-1/2 z-20 hidden -translate-y-1/2 translate-x-8 lg:block">
+              <FacebookCard />
+            </div>
+          </div>
+
+          {/* Mobile Facebook Widget */}
+          <div className="mt-8 flex justify-center lg:hidden">
+            <FacebookCard />
           </div>
         </div>
       </Container>

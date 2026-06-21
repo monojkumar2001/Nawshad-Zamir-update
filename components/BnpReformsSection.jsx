@@ -21,9 +21,9 @@ const reforms = [
   },
 ];
 
-function MedalIcon() {
+function MedalIcon({ className = "" }) {
   return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+    <svg className={className} viewBox="0 0 36 36" fill="none" aria-hidden="true">
       <circle cx="18" cy="14" r="8" stroke="#E31837" strokeWidth="1.5" />
       <path
         d="M13 22L11 32L18 28L25 32L23 22"
@@ -41,26 +41,33 @@ function MedalIcon() {
   );
 }
 
-function CommunityIcon() {
+function CommunityIcon({ className = "" }) {
   return (
-    <svg width="40" height="34" viewBox="0 0 40 34" fill="none" aria-hidden="true">
-      <circle cx="14" cy="10" r="3.5" stroke="#E31837" strokeWidth="1.5" />
-      <circle cx="20" cy="8" r="3.5" stroke="#E31837" strokeWidth="1.5" />
-      <circle cx="26" cy="10" r="3.5" stroke="#E31837" strokeWidth="1.5" />
+    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <circle cx="20" cy="14" r="9" stroke="#E31837" strokeWidth="1.5" />
+      <circle cx="15" cy="13" r="2.5" stroke="#E31837" strokeWidth="1.2" />
+      <circle cx="20" cy="11" r="2.5" stroke="#E31837" strokeWidth="1.2" />
+      <circle cx="25" cy="13" r="2.5" stroke="#E31837" strokeWidth="1.2" />
       <path
-        d="M10 18C10 14.5 12.5 12 14 12C15.2 12 16.2 12.8 17 14C17.8 12.8 18.8 12 20 12C21.2 12 22.2 12.8 23 14C23.8 12.8 24.8 12 26 12C27.5 12 30 14.5 30 18"
+        d="M12 18C12 16 14 15 15 15C16.2 15 17 15.8 17.5 17"
+        stroke="#E31837"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M28 18C28 16 26 15 25 15C23.8 15 23 15.8 22.5 17"
+        stroke="#E31837"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M8 30C8 26 12 24 14 24C16 24 18 25.5 20 27C22 25.5 24 24 26 24C28 24 32 26 32 30"
         stroke="#E31837"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
       <path
-        d="M6 28C6 23 9 20 12 20C14 20 15.5 21.2 16.5 23C17.5 21.2 19 20 21 20C23 20 24.5 21.2 25.5 23C26.5 21.2 28 20 30 20C33 20 36 23 36 28"
-        stroke="#E31837"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4 30H36"
+        d="M6 32H34"
         stroke="#E31837"
         strokeWidth="1.5"
         strokeLinecap="round"
@@ -69,9 +76,9 @@ function CommunityIcon() {
   );
 }
 
-function DocumentsIcon() {
+function DocumentsIcon({ className = "" }) {
   return (
-    <svg width="34" height="36" viewBox="0 0 34 36" fill="none" aria-hidden="true">
+    <svg className={className} viewBox="0 0 34 36" fill="none" aria-hidden="true">
       <rect x="6" y="4" width="20" height="26" rx="1.5" stroke="#E31837" strokeWidth="1.5" />
       <path d="M11 12H21M11 17H21M11 22H17" stroke="#E31837" strokeWidth="1.5" strokeLinecap="round" />
       <rect x="10" y="8" width="20" height="26" rx="1.5" stroke="#E31837" strokeWidth="1.5" />
@@ -80,16 +87,16 @@ function DocumentsIcon() {
   );
 }
 
-function ReformIcon({ type }) {
-  if (type === "medal") return <MedalIcon />;
-  if (type === "community") return <CommunityIcon />;
-  if (type === "documents") return <DocumentsIcon />;
+function ReformIcon({ type, className = "" }) {
+  if (type === "medal") return <MedalIcon className={className} />;
+  if (type === "community") return <CommunityIcon className={className} />;
+  if (type === "documents") return <DocumentsIcon className={className} />;
   return null;
 }
 
 function ReformCard({ item }) {
   return (
-    <article className="relative flex flex-col items-center px-5 pb-12 pt-16 text-center sm:px-6 md:pb-14 md:pt-20">
+    <article className="relative -top-20 h-[400px]  flex flex-col items-center px-5 pb-12  text-center sm:px-6 md:pb-14 ">
       <div
         className="absolute inset-0 bg-[#edf2f7]"
         style={{
@@ -97,34 +104,35 @@ function ReformCard({ item }) {
         }}
         aria-hidden="true"
       />
+      <div className="absolute -bottom-10 left-0 right-0 h-full flex flex-col items-center justify-center">
+        <div className="relative z-10 bg-white flex h-[148px] w-[148px] flex-col items-center justify-center gap-1 rounded-full border-4 border-[#E31837] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] md:h-[156px] md:w-[156px]">
+          <ReformIcon type={item.icon} className="w-16 h-16 lg:w-20 lg:h-20" />
+          <span className="text-[42px] font-bold leading-none text-[#001540] md:text-[44px]">
+            {item.number}
+          </span>
+        </div>
 
-      <div className="relative z-10  mb-7 flex h-[148px] w-[148px] flex-col items-center justify-center gap-1 rounded-full border-2 border-[#E31837] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] md:h-[156px] md:w-[156px]">
-        <ReformIcon type={item.icon} />
-        <span className="text-[42px] font-bold leading-none text-[#001540] md:text-[44px]">
-          {item.number}
-        </span>
+        <h3 className="relative z-10 mt-6 border-b-2 border-[#001540] px-1 pb-1.5 text-base font-bold uppercase tracking-wide text-[#001540] md:text-2xl tracking-[-1.1px]">
+          {item.title}
+        </h3>
+        <p className="relative z-10 mt-5 max-w-[240px] text-base leading-relaxed text-gray-600">
+          {item.description}
+        </p>
       </div>
-
-      <h3 className="relative z-10 mt-4 border-b-2 border-[#001540] px-1 pb-1.5 text-base font-bold uppercase tracking-wide text-[#001540] md:text-lg">
-        {item.title}
-      </h3>
-      <p className="relative z-10 mt-5 max-w-[240px] text-sm leading-relaxed text-gray-600">
-        {item.description}
-      </p>
     </article>
   );
 }
 
 export default function BnpReformsSection() {
   return (
-    <section className="bg-white py-14 md:py-20">
+    <section className="bg-white">
       <Container className="relative max-w-6xl">
-        <div className="mx-auto mb-12 max-w-5xl text-center md:mb-16">
-          <h2 className="text-xl font-bold uppercase leading-snug tracking-wide text-[#001540] md:text-[26px] md:leading-tight lg:text-[28px]">
+        <div className="mx-auto mb-12 max-w-[890px] text-center md:mb-16">
+          <h2 className="text-xl font-roboto font-bold uppercase tracking-[-1.1px] text-[#051A53] leading-tight md:text-[26px] lg:text-[40px]">
             BNP&apos;S PROPOSED OUTLINE FOR STRUCTURAL &amp; SOCIO-ECONOMIC
             REFORMS
           </h2>
-          <p className="mx-auto mt-5 max-w-4xl text-sm leading-relaxed text-gray-700 md:text-[15px]">
+          <p className="mx-auto font-rajdhani mt-5 max-w-4xl text-sm leading-relaxed text-gray-700 md:text-[16px]">
             A Framework for Democratic Constitutional Reform, State System
             Institutionalization, Economic Liberalization, Public Accountability
             and Socio - Economic Liberation of the Country.

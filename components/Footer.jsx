@@ -92,7 +92,7 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="relative overflow-hidden bg-[#001540] text-white">
+    <footer className="relative overflow-hidden bg-[#001540] text-white ">
       <FooterBackground />
 
       <Container className="relative z-10">

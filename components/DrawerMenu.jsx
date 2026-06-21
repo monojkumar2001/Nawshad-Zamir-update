@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -58,6 +59,12 @@ const socialLinks = [
 ];
 
 export default function DrawerMenu({ isOpen, onClose }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -73,10 +80,12 @@ export default function DrawerMenu({ isOpen, onClose }) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onClose]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <>
       <div
-        className={`fixed inset-0 z-[60] bg-black/55 transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[100] bg-black/55 transition-opacity duration-300 ${
           isOpen
             ? "visible opacity-100"
             : "invisible pointer-events-none opacity-0"
@@ -91,7 +100,7 @@ export default function DrawerMenu({ isOpen, onClose }) {
         aria-modal="true"
         aria-labelledby="drawer-title"
         aria-hidden={!isOpen}
-        className={`fixed right-0 top-0 z-[70] flex h-full w-full max-w-[380px] flex-col overflow-y-auto bg-[#111111] shadow-[-12px_0_48px_rgba(0,0,0,0.5)] transition-transform duration-500 ease-out ${
+        className={`fixed right-0 top-0 z-[110] flex h-full w-full max-w-[380px] flex-col overflow-y-auto bg-[#111111] shadow-[-12px_0_48px_rgba(0,0,0,0.5)] transition-transform duration-500 ease-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -166,6 +175,7 @@ export default function DrawerMenu({ isOpen, onClose }) {
           </div>
         </div>
       </aside>
-    </>
+    </>,
+    document.body
   );
 }

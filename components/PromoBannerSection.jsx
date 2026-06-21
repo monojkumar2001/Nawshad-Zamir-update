@@ -18,13 +18,13 @@ export default function PromoBannerSection() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[#021b6c] py-12 md:py-16">
+      <section className="relative overflow-hidden bg-[#021b6c] ">
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 bottom-0 z-0 w-full max-w-[420px] bg-[url('/assets/images/video-side.png')] bg-contain bg-left bg-no-repeat opacity-90 md:max-w-[520px]"
+          className="pointer-events-none absolute inset-y-0 right-0 -bottom-24  z-0 w-full max-w-[420px] bg-[url('/assets/images/video-side.png')] bg-contain bg-left bg-no-repeat opacity-90 md:max-w-[520px]"
           aria-hidden="true"
         />
-        <div className="site-container relative z-10">
-          <div className="relative mx-auto aspect-[16/7] w-full max-w-6xl overflow-hidden rounded-sm">
+        <div className="site-container py-10 lg:py-16 relative z-10">
+          <div className="relative rounded-lg lg:rounded-2xl mx-auto aspect-[16/7] w-full max-w-6xl overflow-hidden">
             <Image
               src="/assets/images/video-img.png"
               alt="Barrister Mir Helal video banner"

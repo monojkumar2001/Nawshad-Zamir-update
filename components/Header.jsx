@@ -62,11 +62,12 @@ export default function Header() {
   }, []);
 
   return (
+    <>
     <header
-      className={`z-50 w-full bg-[#051A53] transition-[box-shadow,background-color] duration-500 ease-in-out ${
+      className={`sticky top-0 z-50 w-full bg-[#051A53] transition-[box-shadow,background-color] duration-500 ease-in-out ${
         isSticky
-          ? "header-sticky-in fixed left-0 right-0 top-0 bg-[#051A53]/95 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md"
-          : "relative shadow-none"
+          ? "bg-[#051A53]/95 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md"
+          : "shadow-none"
       }`}
     >
       <BackgroundPattern />
@@ -115,12 +116,14 @@ export default function Header() {
         aria-expanded={isMenuOpen}
         aria-controls="site-drawer"
         onClick={() => setIsMenuOpen(true)}
-        className="absolute right-10 top-1/2 flex -translate-y-1/2 items-center justify-center transition-opacity hover:opacity-80"
+        className="absolute right-10 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center transition-opacity hover:opacity-80"
       >
         <HamburgerIcon />
       </button>
 
-      <DrawerMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </header>
+
+    <DrawerMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+    </>
   );
 }
