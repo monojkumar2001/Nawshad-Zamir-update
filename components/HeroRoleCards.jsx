@@ -128,7 +128,7 @@ function CardIcon({ type }) {
 
 function RoleCard({ card }) {
   return (
-    <article className="group relative min-h-[190px] overflow-hidden rounded-lg bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] md:min-h-[200px] md:p-8">
+    <article className="group relative min-h-[190px] overflow-hidden  bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] md:min-h-[250px] md:p-6">
       <div
         className="absolute right-0 top-0 h-[76px] w-[76px] rounded-bl-full bg-[#fde8e4] transition-colors duration-300 group-hover:bg-[#E31837] md:h-[84px] md:w-[84px]"
         aria-hidden="true"
@@ -141,10 +141,10 @@ function RoleCard({ card }) {
         <CardIcon type={card.icon} />
       </div>
 
-      <h3 className="relative pr-12 text-[15px] font-bold leading-snug text-[#001540] md:text-base">
+      <h3 className="font-roboto relative pr-12 text-lg font-bold leading-snug text-[#001540] md:text-xl">
         {card.title}
       </h3>
-      <p className="relative mt-2.5 text-[13px] leading-relaxed text-gray-500">
+      <p className="relative mt-2.5 text-base leading-relaxed text-gray-500">
         {card.subtitle}
       </p>
     </article>
@@ -177,6 +177,7 @@ export default function HeroRoleCards() {
             slidesPerGroup={1}
             spaceBetween={16}
             speed={500}
+            loop={true}
             breakpoints={{
               640: {
                 slidesPerView: 2,

@@ -1,8 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
+import DrawerMenu from "@/components/DrawerMenu";
+
+const SCROLL_THRESHOLD = 80;
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -32,46 +36,64 @@ function HamburgerIcon() {
 function BackgroundPattern() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <svg
-        className="absolute left-[14%] top-1/2 h-[160%] w-auto -translate-y-1/2 opacity-[0.14]"
-        viewBox="0 0 420 420"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="210" cy="210" r="190" stroke="white" strokeWidth="1" strokeDasharray="3 7" />
-        <circle cx="210" cy="210" r="150" stroke="white" strokeWidth="1" strokeDasharray="3 7" />
-        <circle cx="210" cy="210" r="110" stroke="white" strokeWidth="1" strokeDasharray="3 7" />
-        <ellipse cx="210" cy="210" rx="190" ry="65" stroke="white" strokeWidth="1" strokeDasharray="3 7" />
-        <ellipse cx="210" cy="210" rx="65" ry="190" stroke="white" strokeWidth="1" strokeDasharray="3 7" />
-        <line x1="20" y1="210" x2="400" y2="210" stroke="white" strokeWidth="1" strokeDasharray="3 7" />
-        <line x1="210" y1="20" x2="210" y2="400" stroke="white" strokeWidth="1" strokeDasharray="3 7" />
-      </svg>
+      <div className="absolute left-20 top-0 h-full w-[55%] max-w-[620px] opacity-[0.10] mix-blend-screen sm:w-[50%] md:max-w-[720px] lg:max-w-[820px]">
+        <Image
+          src="/assets/images/header-shap.png"
+          alt=""
+          fill
+          sizes="(max-width: 768px) 55vw, 820px"
+          className="object-cover object-left"
+          priority
+        />
+      </div>
     </div>
   );
 }
 
 export default function Header() {
+  const [isSticky, setIsSticky] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsSticky(window.scrollY > SCROLL_THRESHOLD);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="relative z-50 w-full bg-[#001540]">
+    <header
+      className={`z-50 w-full bg-[#051A53] transition-[box-shadow,background-color] duration-500 ease-in-out ${
+        isSticky
+          ? "header-sticky-in fixed left-0 right-0 top-0 bg-[#051A53]/95 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md"
+          : "relative shadow-none"
+      }`}
+    >
       <BackgroundPattern />
 
-      <Container className="relative flex h-[72px] items-center pr-[240px] md:pr-[270px]">
+      <Container
+        className={`relative flex items-center pr-[240px] transition-all duration-500 ease-in-out md:pr-[270px] ${
+          isSticky ? "h-[84px]" : "h-[84px]"
+        }`}
+      >
         <Link href="/" className="relative z-10 flex-shrink-0">
           <Image
             src="/assets/images/logo.png"
             alt="Mir Helal"
             width={180}
             height={70}
-            className="h-14 w-auto"
+            className={`w-auto transition-all duration-500 ease-in-out ${
+              isSticky ? "h-14" : "h-16"
+            }`}
           />
         </Link>
 
-        <nav className="relative z-10 ml-8 hidden items-center gap-6 md:flex lg:ml-14 lg:gap-8 xl:gap-10">
+        <nav className="relative z-10 ml-24 hidden items-center gap-6 md:flex  lg:gap-14 xl:gap-16">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="whitespace-nowrap text-[15px] font-medium text-white transition-opacity hover:opacity-80"
+              className="whitespace-nowrap text-base font-medium text-white transition-opacity hover:opacity-80"
             >
               {link.label}
             </Link>
@@ -81,20 +103,24 @@ export default function Header() {
         <div className="absolute right-6 top-1/2 z-20 flex -translate-y-1/2 items-center gap-5 lg:right-8 lg:gap-6">
           <Link
             href="#contact"
-            className="font-bengali whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-[#001540] shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-shadow hover:shadow-[0_0_26px_rgba(255,255,255,0.55)] md:px-6 md:text-sm"
+            className=" whitespace-nowrap rounded-md bg-white px-5 py-2.5 text-[15px] font-semibold text-[#001540] shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-shadow hover:shadow-[0_0_26px_rgba(255,255,255,0.55)] md:px-6 md:text-base"
           >
             যোগাযোগ ও মতামত
           </Link>
-
-          <button
-            type="button"
-            aria-label="Open menu"
-            className="flex items-center justify-center transition-opacity hover:opacity-80"
-          >
-            <HamburgerIcon />
-          </button>
         </div>
       </Container>
+      <button
+        type="button"
+        aria-label="Open menu"
+        aria-expanded={isMenuOpen}
+        aria-controls="site-drawer"
+        onClick={() => setIsMenuOpen(true)}
+        className="absolute right-10 top-1/2 flex -translate-y-1/2 items-center justify-center transition-opacity hover:opacity-80"
+      >
+        <HamburgerIcon />
+      </button>
+
+      <DrawerMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </header>
   );
 }
