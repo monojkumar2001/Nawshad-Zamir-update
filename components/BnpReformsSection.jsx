@@ -118,7 +118,7 @@ function ReformCard({ item }) {
 export default function BnpReformsSection() {
   return (
     <section className="bg-white py-14 md:py-20">
-      <Container className="relative max-w-6xl ">
+      <Container className="relative max-w-6xl">
         <div className="mx-auto mb-12 max-w-5xl text-center md:mb-16">
           <h2 className="text-xl font-bold uppercase leading-snug tracking-wide text-[#001540] md:text-[26px] md:leading-tight lg:text-[28px]">
             BNP&apos;S PROPOSED OUTLINE FOR STRUCTURAL &amp; SOCIO-ECONOMIC
