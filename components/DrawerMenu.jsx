@@ -131,7 +131,7 @@ export default function DrawerMenu({ isOpen, onClose }) {
           <p className="mt-3 text-sm leading-relaxed text-gray-300">{aboutText}</p>
 
           <Link
-            href="#about"
+            href="/about"
             onClick={onClose}
             className="mt-5 inline-flex w-full items-center justify-center bg-[#D82221] px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#c01e1d]"
           >

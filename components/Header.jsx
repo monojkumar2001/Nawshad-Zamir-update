@@ -9,11 +9,11 @@ import DrawerMenu from "@/components/DrawerMenu";
 const SCROLL_THRESHOLD = 80;
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Timeline", href: "#timeline" },
-  { label: "News", href: "#news" },
-  { label: "Events", href: "#events" },
-  { label: "Media", href: "#media" },
+  { label: "About", href: "/about" },
+  { label: "Timeline", href: "/timeline" },
+  { label: "News", href: "/news" },
+  { label: "Events", href: "/events" },
+  { label: "Media", href: "/media" },
 ];
 
 function HamburgerIcon() {
@@ -103,7 +103,7 @@ export default function Header() {
 
         <div className="absolute right-6 top-1/2 z-20 flex -translate-y-1/2 items-center gap-5 lg:right-8 lg:gap-6">
           <Link
-            href="#contact"
+            href="/inform"
             className=" whitespace-nowrap rounded-md bg-white px-5 py-2.5 text-[15px] font-semibold text-[#001540] shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-shadow hover:shadow-[0_0_26px_rgba(255,255,255,0.55)] md:px-6 md:text-base"
           >
             যোগাযোগ ও মতামত
