@@ -14,11 +14,11 @@ import {
 import Container from "@/components/Container";
 
 const footerLinks = [
-  { label: "About", href: "#about" },
-  { label: "Timeline", href: "#timeline" },
-  { label: "News", href: "#news" },
-  { label: "Events", href: "#events" },
-  { label: "Media", href: "#media" },
+  { label: "About", href: "/about" },
+  { label: "Timeline", href: "/timeline" },
+  { label: "News", href: "/news" },
+  { label: "Events", href: "/events" },
+  { label: "Media", href: "/media" },
 ];
 
 const socialLinks = [
